@@ -1,8 +1,8 @@
-import { useState, createContext, useContext } from "react"; // IMPORTANTE: Agregar useContext
+import { useState, createContext, useContext } from "react";
 
 const AuthContext = createContext();
 
-export function AuthProvider(props) { // Corregido el nombre a AuthProvider
+export function AuthProvider(props) {
     const { children } = props;
     const [token, setToken] = useState(localStorage.getItem('token') || null);
 
@@ -12,7 +12,7 @@ export function AuthProvider(props) { // Corregido el nombre a AuthProvider
     };
 
     const logout = () => {
-        localStorage.removeItem('token'); // Corregido: 'token' en lugar de 'item'
+        localStorage.removeItem('token');
         setToken(null);
     };
 
