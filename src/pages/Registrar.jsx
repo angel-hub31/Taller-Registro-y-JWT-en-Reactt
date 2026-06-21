@@ -29,21 +29,41 @@ function Registrar() {
             setMensaje(err.message);
         }
     };
-
-    return (
-        <div>
-            <h2>Crear Cuenta</h2>
-            <form onSubmit={manejarRegistro}>
-                <input type="text" placeholder="Usuario" onChange={(e) => setUsername(e.target.value)} required />
-                <input type="password" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} required />
-                <select onChange={(e) => setRol(e.target.value)}>
-                    <option value="USER">USER</option>
-                    <option value="ADMIN">ADMIN</option>
-                </select>
-                <button type="submit">Registrarse</button>
-            </form>
-            {mensaje && <p>{mensaje}</p>}
-            <Link to="/login">Volver al Login</Link>
+return (
+        <div className="login-page">
+            <div className="auth-container">
+                <div className="icon-circle">👤</div>
+                <h2>Crear Cuenta</h2>
+                
+                <form onSubmit={manejarRegistro}>
+                    {/* Input con etiqueta incluida en el placeholder */}
+                    <input 
+                        type="text" 
+                        placeholder="Usuario" 
+                        onChange={(e) => setUsername(e.target.value)} 
+                        required 
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Contraseña" 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
+                    />
+                    
+                    <label style={{ fontSize: '0.8rem', color: '#666' }}>Selecciona tu rol:</label>
+                    <select onChange={(e) => setRol(e.target.value)} style={{marginBottom: '20px'}}>
+                        <option value="USER">USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                    
+                    <button type="submit">CREAR CUENTA</button>
+                    
+                    <p style={{ marginTop: '15px' }}>
+                        <Link to="/login">Volver al Login</Link>
+                    </p>
+                </form>
+                {mensaje && <p style={{ color: mensaje.includes('exitoso') ? 'green' : 'red' }}>{mensaje}</p>}
+            </div>
         </div>
     );
 }

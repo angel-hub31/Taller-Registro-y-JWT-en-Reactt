@@ -16,9 +16,9 @@ function Login() {
         setError('');
         try {
             const response = await fetch(`${API_BASE_URL}/auth/login`, {
-                method: 'POST', 
-                headers: {      
-                    'Content-Type': 'application/json' 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username, password }),
             });
@@ -29,45 +29,53 @@ function Login() {
 
             const datos = await response.json();
             login(datos.token);
-            navigate('/perfil'); 
+            navigate('/perfil');
 
         } catch (error) {
-            setError(error.message); 
+            setError(error.message);
         }
     }
 
-    return (
-        <div>
-            <h1>Iniciar Sesión</h1>
-            <form onSubmit={manejarSubmit}>
-                <div>
-                    <label>Usuario:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
+  return (
+        <div className="login-page">
+            <div className="auth-container">
+                <div className="icon-circle">👤</div>
+                <h2>Login</h2>
+                
+                <form onSubmit={manejarSubmit}>
+                    <input 
+                        type="text" 
+                        placeholder="Usuario" 
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} 
+                        required 
                     />
-                    <div>
-                        <label>Contraseña:</label>
-                        <input
-                            type="password" 
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button type="submit">Ingresar</button>
+                    <input 
+                        type="password" 
+                        placeholder="Contraseña" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
+                    />
+                    <button type="submit">INGRESAR</button>
+                    
+                    {/* Botón de nueva cuenta que navega sin enviar formulario */}
+                    <button 
+                        type="button" 
+                        onClick={() => navigate('/registrar')}
+                        style={{ backgroundColor: '#555' }}
+                    >
+                        NUEVA CUENTA
+                    </button>
+                </form>
 
-                    <button type="submit">Registrar</button>
-                </div>
-                <div>
-                <p>¿No tienes cuenta? <Link to="/registrar">Regístrate aquí</Link></p>
+                <p style={{ marginTop: '15px' }}>
+                    ¿No tienes cuenta? <Link to="/registrar">Regístrate</Link>
+                </p>
+                {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
             </div>
-            </form>
         </div>
-    )
+    );
 }
 
 export default Login;

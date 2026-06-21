@@ -54,26 +54,24 @@ function Perfil() {
     }
 
     // Manejo de carga o error antes de renderizar
-    if (error) return <div>Error: {error}</div>;
-    if (!datosPerfil) return <div>Cargando...</div>;
+    if (error) return <div className="login-page"><div className="auth-container">Error: {error}</div></div>;
+    if (!datosPerfil) return <div className="login-page"><div className="auth-container">Cargando...</div></div>;
 
     return (
-        <div>
-            <div>
+        <div className="login-page">
+            <div className="auth-container">
+                <div className="icon-circle">👤</div>
                 <h2>Perfil de Usuario</h2>
-                <button onClick={manejarLogout}>Cerrar Sesión</button>
-            </div>
 
-            {error && <p>{error}</p>}
-            {datosPerfil && (
-                <div>
-                    <p>Mensaje: {datosPerfil.Mensaje}</p>     {/* Cambiado a M mayúscula */}
-                    <p>Usuario: {datosPerfil.Usuario}</p>     {/* Cambiado a U mayúscula */}
-                    <p>Rol: {datosPerfil.rol_detectado}</p>   {/* Este está bien */}
-                    <p>Status: {datosPerfil.status}</p>       {/* Este está bien */}
+                <div className="perfil-info">
+                    <p><strong>Mensaje:</strong> {datosPerfil.Mensaje}</p>
+                    <p><strong>Usuario:</strong> {datosPerfil.Usuario}</p>
+                    <p><strong>Rol:</strong> {datosPerfil.rol_detectado}</p>
+                    <p><strong>Status:</strong> {datosPerfil.status}</p>
                 </div>
-            )}
 
+                <button onClick={manejarLogout} className="btn-logout">Cerrar Sesión</button>
+            </div>
         </div>
     );
 }
