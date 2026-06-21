@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { API_BASE_URL } from "../config/apiConfig";
 
@@ -59,7 +59,12 @@ function Login() {
                     </div>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     <button type="submit">Ingresar</button>
+
+                    <button type="submit">Registrar</button>
                 </div>
+                <div>
+                <p>¿No tienes cuenta? <Link to="/registrar">Regístrate aquí</Link></p>
+            </div>
             </form>
         </div>
     )
