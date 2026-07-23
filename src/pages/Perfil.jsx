@@ -71,6 +71,11 @@ function Perfil() {
                 </div>
 
                 <button onClick={manejarLogout} className="btn-logout">Cerrar Sesión</button>
+
+                <button onClick={() => navigate("/vehiculos")} className="btn-logout">Gestionar Vehiculos</button>
+
+                <button onClick={() => navigate("/celulares")} className="btn-logout">Gestionar Celulares</button>
+
             </div>
         </div>
     );
